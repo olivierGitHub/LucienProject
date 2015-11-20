@@ -39,5 +39,9 @@ public class GasPump {
 
     //Foreign Keys
     public Employee getEmployee() {return employee;}
+    public void setEmployee(Employee employee) {this.employee = employee;}
+
+    public GasTank getGasTank() {return gasTank;}
+    public void setGasTank(GasTank gasTank) {this.gasTank = gasTank;}
 
 }
