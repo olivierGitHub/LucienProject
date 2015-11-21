@@ -1,7 +1,6 @@
 package com.rest;
 
-import com.services.InitServices;
-import com.services.PumpServices;
+import com.services.*;
 import com.test.ServiceTest;
 
 import javax.ws.rs.core.Application;
@@ -17,7 +16,11 @@ public class MyServices extends Application {
     public MyServices() {
         singletons.add(new ServiceTest());
         singletons.add(new InitServices());
+        singletons.add(new CustomerServices());
+        singletons.add(new HumanRessourcesServices());
         singletons.add(new PumpServices());
+        singletons.add(new ProviderServices());
+
     }
 
     @Override
