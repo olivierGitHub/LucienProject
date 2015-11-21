@@ -100,10 +100,15 @@ public class InitServices {
         boolean loisOk = customerDao.create(lois);
         boolean loisAccountOk = customerAccountDao.create(loisAccount);
 
-        if (batmanOk && supermanOk && parisTankOk && totalLucienOk && elfLucienOk)
+        if (batmanOk && supermanOk && parisTankOk && totalLucienOk && elfLucienOk
+                && jackOk && jackAccountOk && loisOk && loisAccountOk)
             return "<p>Database's initialization is OK if the name above corresponds to <b>Batman</b></p><p>name: <b>"
                     + gasPumpDao.read(1).getEmployee().getFirstname()
                     + " " + gasPumpDao.read(1).getEmployee().getLastname()
+                    + "</b>.</p><br/>"
+                    + "<p>Database's initialization is OK if the name above corresponds to <b>Lois Lane</b></p><p>name: <b>"
+                    + customerAccountDao.read(2).getCustomer().getFirstname()
+                    + " " + customerAccountDao.read(2).getCustomer().getLastname()
                     + "</b>.</p><br/>"
                     + "<p>Note: running the initialization service a second time will logically fail ;-)</p>";
         else
