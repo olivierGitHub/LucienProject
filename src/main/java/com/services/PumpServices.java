@@ -36,25 +36,25 @@ public class PumpServices {
     @GET
     @Path("/buy")
     @Produces(MediaType.TEXT_HTML)
-    public String purchaseFuel(@QueryParam("customerId") int customerId, @QueryParam("quantity") int quantity){
+    public String purchaseFuel(@QueryParam("accountId") int accountId, @QueryParam("quantity") int quantity){
 
         //Update of the state of the pump after the purchase
-        int actualPump = gasPumpDao.read(1).getActualState();
+        int previousPumpState = gasPumpDao.read(1).getActualState();
         GasPump gasPump = gasPumpDao.read(1);
-            gasPump.setActualState(actualPump - quantity);
+            gasPump.setActualState(previousPumpState - quantity);
         gasPumpDao.update(gasPump);
 
         //Update of the state of the tank after the purchase
-        int actualTank = gasTankDao.read(1).getActualState();
+        int previousTankState = gasTankDao.read(1).getActualState();
         GasTank gasTank = gasTankDao.read(1);
-        gasTank.setActualState(actualTank - quantity);
+            gasTank.setActualState(previousTankState - quantity);
         gasTankDao.update(gasTank);
 
         //Update of the state of the customer account after the purchase
         double price = quantity * fuelRate;
-        double actualPosition = customerAccountDao.read(customerId).getPosition();
-        CustomerAccount customerAccount = customerAccountDao.read(customerId);
-            customerAccount.setPosition(actualPosition - price);
+        double previousPosition = customerAccountDao.read(accountId).getPosition();
+        CustomerAccount customerAccount = customerAccountDao.read(accountId);
+            customerAccount.setPosition(previousPosition - price);
         customerAccountDao.update(customerAccount);
 
         //Save in the history of purchase
@@ -63,8 +63,19 @@ public class PumpServices {
             purchasingHistory.setPurchasingOption("Using Customer Account");
         purchasingHistoryDao.create(purchasingHistory);
 
-
-        return "<p>Si un resultat s'affiche, la config est OK</p>";
+        if ( (previousPumpState!=gasPumpDao.read(1).getActualState())
+                && (previousTankState!=gasTankDao.read(1).getActualState())
+                && (previousPosition!=customerAccountDao.read(accountId).getPosition()) )
+            return "<p><b>Before</b> the fuel purchase, the pump <b>"+ gasPump.getName()+"</b> contains : <b>" + previousPumpState +"</b></p>" +
+                   "<p><b>After</b> the fuel purchase, the pump <b>"+ gasPump.getName()+"</b> contains : <b>" + gasPumpDao.read(1).getActualState() +"</b></p><br />" +
+                    "<p><b>Before</b> the fuel purchase, the tank <b>"+ gasTank.getName()+"</b> contains : <b>" + previousTankState +"</b></p>" +
+                    "<p><b>After</b> the fuel purchase, the tank <b>"+ gasTank.getName()+"</b> contains : <b>" + gasTankDao.read(1).getActualState() +"</b></p><br />" +
+                    "<p><b>Before</b> the fuel purchase, the position of the account of <b>"+ customerAccount.getCustomer().getFirstname()+ " " + customerAccount.getCustomer().getLastname() +
+                    "</b> was : <b>" + previousPosition +"</b></p>" +
+                    "<p><b>After</b> the fuel purchase, the position of the account of <b>"+ customerAccount.getCustomer().getFirstname()+ " " + customerAccount.getCustomer().getLastname() +
+                    "</b> is : <b>" + customerAccountDao.read(accountId).getPosition() +"</b></p>";
+        else
+            return "<p>The fuel purchase failed, make sure to type a valid <b>customer account id</b>.</p>";
     }
 
 }

@@ -43,14 +43,19 @@ public class StockServices {
 
         // update stock
         ShopStock shopStock = shopStockDao.read(idShopStock);
-        Integer actualQuantity = shopStock.getQuantity();
+        int actualQuantity = shopStock.getQuantity();
         shopStock.setQuantity(actualQuantity + quantity);
         shopStockDao.update(shopStock);
 
         if (orderOk && actualQuantity!=shopStock.getQuantity())
-            return "<p>Si un resultat s'affiche, la config est OK</p>";
+            return "<p>Order : <b>" + shopStockDao.read(idShopStock).getArticle() +"</b></p>" +
+                   "<p>Order quantity: <b>" + quantity +"</b></p>" +
+                   "<p>Order amount: <b>" + order.getAmount() +"</b></p>" +
+                   "<p>Order is paid : <b>" + order.getPaid() +"</b></p>" +
+                   "<p>Order funds remaining : <b>" + order.getFunds().getAmount() +"</b></p>" +
+                   "<p>Stock remaining : <b>" + shopStockDao.read(idShopStock).getQuantity() +"</b></p>";
         else
-            return null;
+            return "<p>The order failed, make sure to type a valid <b>id</b>.</p>";
     }
 
     @PUT
