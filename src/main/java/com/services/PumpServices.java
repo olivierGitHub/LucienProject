@@ -36,7 +36,7 @@ public class PumpServices {
     @GET
     @Path("/buy")
     @Produces(MediaType.TEXT_HTML)
-    public String doOperationService(@QueryParam("customerId") int customerId, @QueryParam("quantity") int quantity){
+    public String purchaseFuel(@QueryParam("customerId") int customerId, @QueryParam("quantity") int quantity){
 
         //Update of the state of the pump after the purchase
         int actualPump = gasPumpDao.read(1).getActualState();
@@ -65,8 +65,6 @@ public class PumpServices {
 
 
         return "<p>Si un resultat s'affiche, la config est OK</p>";
-        //return res;
     }
-
 
 }

@@ -13,6 +13,7 @@ public class ShopStock {
     @GeneratedValue
     private Integer idShopStock;
     private String article;
+    private Double unitPrice;
     private Integer quantity;
     @OneToOne
     private Provider provider;
@@ -27,5 +28,8 @@ public class ShopStock {
 
     public String getArticle() {return article;}
     public void setArticle(String article) {this.article = article;}
+
+    public Double getUnitPrice() {return unitPrice;}
+    public void setUnitPrice(Double unitPrice) {this.unitPrice = unitPrice;}
 
 }

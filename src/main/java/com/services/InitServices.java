@@ -1,15 +1,22 @@
 package com.services;
 
+import com.dao.dao.accountingProvider.FundsDaoImpl;
+import com.dao.dao.accountingProvider.ShopStockDaoImpl;
 import com.dao.dao.customer.CustomerAccountDaoImpl;
 import com.dao.dao.customer.CustomerDaoImpl;
 import com.dao.dao.employee.EmployeeDaoImpl;
 import com.dao.dao.gas.GasPumpDaoImpl;
 import com.dao.dao.gas.GasTankDaoImpl;
+import com.dao.dao.interfaces.accountingProvider.FundsDao;
+import com.dao.dao.interfaces.accountingProvider.ShopStockDao;
 import com.dao.dao.interfaces.customer.CustomerAccountDao;
 import com.dao.dao.interfaces.customer.CustomerDao;
 import com.dao.dao.interfaces.employee.EmployeeDao;
 import com.dao.dao.interfaces.gas.GasPumpDao;
 import com.dao.dao.interfaces.gas.GasTankDao;
+import com.dao.entities.accountingProvider.Funds;
+import com.dao.entities.accountingProvider.Provider;
+import com.dao.entities.accountingProvider.ShopStock;
 import com.dao.entities.customer.Customer;
 import com.dao.entities.customer.CustomerAccount;
 import com.dao.entities.employee.Employee;
@@ -46,10 +53,33 @@ public class InitServices {
     CustomerAccount jackAccount = new CustomerAccount();
     CustomerAccount loisAccount = new CustomerAccount();
 
+    FundsDao fundsDao = new FundsDaoImpl();
+    Funds novemberFunds = new Funds();
+    Funds decemberFunds = new Funds();
 
+    ShopStockDao shopStockDao = new ShopStockDaoImpl();
+    ShopStock marsChocolate = new ShopStock();
+    ShopStock snickersChocolate = new ShopStock();
+
+    Provider nestle = new Provider();
 
 
     {
+        novemberFunds.setAmount(1200.0);
+        decemberFunds.setAmount(1400.0);
+
+        nestle.setName("Nestle");
+        nestle.setAddress("Paris");
+
+        marsChocolate.setProvider(nestle);
+        marsChocolate.setArticle("Mars Chocolate");
+        marsChocolate.setQuantity(120);
+        marsChocolate.setUnitPrice(1.2);
+
+        snickersChocolate.setProvider(nestle);
+        snickersChocolate.setArticle("Snickers Chocolate");
+        snickersChocolate.setQuantity(10);
+        snickersChocolate.setUnitPrice(1.4);
 
         jack.setFirstname("jack");
         jack.setLastname("sparrow");

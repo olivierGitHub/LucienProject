@@ -19,7 +19,7 @@ public class MyServices extends Application {
         singletons.add(new CustomerServices());
         singletons.add(new HumanRessourcesServices());
         singletons.add(new PumpServices());
-        singletons.add(new ProviderServices());
+        singletons.add(new StockServices());
 
     }
 
