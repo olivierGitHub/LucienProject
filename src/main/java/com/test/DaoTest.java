@@ -2,7 +2,7 @@ package com.test;
 
 import com.dao.dao.employee.EmployeeDaoImpl;
 import com.dao.dao.interfaces.employee.EmployeeDao;
-import com.dao.entities.Employee;
+import com.dao.entities.employee.Employee;
 
 /**
  * Created by olivier on 20/11/15.

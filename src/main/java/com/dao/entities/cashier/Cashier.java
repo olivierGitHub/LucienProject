@@ -1,4 +1,4 @@
-package com.dao.entities;
+package com.dao.entities.cashier;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

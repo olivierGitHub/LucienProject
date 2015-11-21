@@ -1,4 +1,7 @@
-package com.dao.entities;
+package com.dao.entities.gas;
+
+import com.dao.entities.cashier.Cashier;
+import com.dao.entities.customer.CustomerAccount;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

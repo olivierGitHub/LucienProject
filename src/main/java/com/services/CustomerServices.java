@@ -4,8 +4,8 @@ import com.dao.dao.customer.CustomerAccountDaoImpl;
 import com.dao.dao.customer.CustomerDaoImpl;
 import com.dao.dao.interfaces.customer.CustomerAccountDao;
 import com.dao.dao.interfaces.customer.CustomerDao;
-import com.dao.entities.Customer;
-import com.dao.entities.CustomerAccount;
+import com.dao.entities.customer.Customer;
+import com.dao.entities.customer.CustomerAccount;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;

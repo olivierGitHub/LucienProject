@@ -2,7 +2,7 @@ package com.services;
 
 import com.dao.dao.employee.EmployeeDaoImpl;
 import com.dao.dao.interfaces.employee.EmployeeDao;
-import com.dao.entities.Employee;
+import com.dao.entities.employee.Employee;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;

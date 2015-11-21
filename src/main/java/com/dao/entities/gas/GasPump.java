@@ -1,6 +1,7 @@
-package com.dao.entities;
+package com.dao.entities.gas;
 
-import javax.jws.Oneway;
+import com.dao.entities.employee.Employee;
+
 import javax.persistence.*;
 
 /**

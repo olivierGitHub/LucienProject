@@ -8,7 +8,10 @@ import com.dao.dao.interfaces.customer.CustomerAccountDao;
 import com.dao.dao.interfaces.gas.GasPumpDao;
 import com.dao.dao.interfaces.gas.GasTankDao;
 import com.dao.dao.interfaces.gas.PurchasingHistoryDao;
-import com.dao.entities.*;
+import com.dao.entities.customer.CustomerAccount;
+import com.dao.entities.gas.GasPump;
+import com.dao.entities.gas.GasTank;
+import com.dao.entities.gas.PurchasingHistory;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;

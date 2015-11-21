@@ -1,7 +1,7 @@
 package com.dao.dao.interfaces.gas;
 
 import com.dao.common.Dao;
-import com.dao.entities.PurchasingHistory;
+import com.dao.entities.gas.PurchasingHistory;
 
 /**
  * Created by olivier on 21/11/15.

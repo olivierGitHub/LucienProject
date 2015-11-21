@@ -1,26 +1,24 @@
-package com.dao.entities;
+package com.dao.entities.customer;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.util.Date;
 
 /**
- * Created by olivier on 20/11/15.
+ * Created by olivier on 21/11/15.
  */
 @Entity
-public class Employee {
+public class Customer {
 
     @Id
     @GeneratedValue
-    private int idEmployee;
+    private Integer idCustomer;
     private String firstname;
     private String lastname;
     private Date birthday;
-    private String occupation;
-    @ManyToOne(fetch=FetchType.LAZY)
-    private Employee manager;
 
-
-    public int getIdEmployee() {return idEmployee;}
+    public int getIdCustomer() {return idCustomer;}
 
     public String getFirstname() {return firstname;}
     public void setFirstname(String firstname) {this.firstname = firstname;}
@@ -30,10 +28,5 @@ public class Employee {
 
     public Date getBirthday() {return birthday;}
     public void setBirthday(Date birthday) {this.birthday = birthday;}
-
-    public String getOccupation() {return occupation;}
-    public void setOccupation(String occupation) {this.occupation = occupation;}
-
-    public Employee getManager() {return manager;}
 
 }

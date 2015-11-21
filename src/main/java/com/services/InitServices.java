@@ -10,7 +10,11 @@ import com.dao.dao.interfaces.customer.CustomerDao;
 import com.dao.dao.interfaces.employee.EmployeeDao;
 import com.dao.dao.interfaces.gas.GasPumpDao;
 import com.dao.dao.interfaces.gas.GasTankDao;
-import com.dao.entities.*;
+import com.dao.entities.customer.Customer;
+import com.dao.entities.customer.CustomerAccount;
+import com.dao.entities.employee.Employee;
+import com.dao.entities.gas.GasPump;
+import com.dao.entities.gas.GasTank;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
