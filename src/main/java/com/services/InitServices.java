@@ -106,7 +106,7 @@ public class InitServices {
                     + gasPumpDao.read(1).getEmployee().getFirstname()
                     + " " + gasPumpDao.read(1).getEmployee().getLastname()
                     + "</b>.</p><br/>"
-                    + "<p>Database's initialization is OK if the name above corresponds to <b>Lois Lane</b></p><p>name: <b>"
+                    + "<p>Database's initialization is OK if the name above corresponds to <b>Superman 's girlfriend</b></p><p>name: <b>"
                     + customerAccountDao.read(2).getCustomer().getFirstname()
                     + " " + customerAccountDao.read(2).getCustomer().getLastname()
                     + "</b>.</p><br/>"
@@ -127,15 +127,15 @@ public class InitServices {
         boolean spidermanOk = employeeDao.create(spiderman);
 
         if (spidermanOk)
-            return "<p>The pump named " + gasPumpDao.read(1).getName() + " is used by <b>"
+            return "<p>The pump named <b>" + gasPumpDao.read(1).getName() + "</b> is used by <b>"
                     + gasPumpDao.read(1).getEmployee().getFirstname()
                     + " " + gasPumpDao.read(1).getEmployee().getLastname()
                     + "</b>.</p>"
-                    + "<p>The tank named " + gasTankDao.read(1).getName() + " is used by <b>"
+                    + "<p>The tank named <b>" + gasTankDao.read(1).getName() + "</b> is used by <b>"
                     + gasTankDao.read(1).getEmployee().getFirstname()
                     + " " + gasTankDao.read(1).getEmployee().getLastname()
                     + "</b>.</p><br/>"
-                    + "<p>The employee above should correspond to Spiderman and is linked to nothing</p><p>name: <b>"
+                    + "<p>The employee above should correspond to <b>Spiderman</b> and is linked to nothing</p><p>name: <b>"
                     + employeeDao.read(3).getFirstname()
                     + " " + employeeDao.read(3).getLastname()
                     + "</b>.</p>";
