@@ -1,14 +1,8 @@
 package com.services;
 
-import com.dao.dao.EmployeeDaoImpl;
-import com.dao.dao.GasPumpDaoImpl;
-import com.dao.dao.GasTankDaoImpl;
-import com.dao.dao.interfaces.EmployeeDao;
-import com.dao.dao.interfaces.GasPumpDao;
-import com.dao.dao.interfaces.GasTankDao;
-import com.dao.entities.Employee;
-import com.dao.entities.GasPump;
-import com.dao.entities.GasTank;
+import com.dao.dao.*;
+import com.dao.dao.interfaces.*;
+import com.dao.entities.*;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -32,9 +26,32 @@ public class InitServices {
     Employee batman = new Employee();
     Employee superman = new Employee();
 
+    CustomerDao customerDao = new CustomerDaoImpl();
+    Customer jack = new Customer();
+    Customer lois = new Customer();
+
+    CustomerAccountDao customerAccountDao = new CustomerAccountDaoImpl();
+    CustomerAccount jackAccount = new CustomerAccount();
+    CustomerAccount loisAccount = new CustomerAccount();
+
+
 
 
     {
+
+        jack.setFirstname("jack");
+        jack.setLastname("sparrow");
+        jack.setBirthday(new Date());
+
+        jackAccount.setCustomer(jack);
+        jackAccount.setPosition(2540.0);
+
+        lois.setFirstname("lois");
+        lois.setLastname("lane");
+        lois.setBirthday(new Date());
+
+        loisAccount.setCustomer(lois);
+        loisAccount.setPosition(20265.0);
 
         batman.setFirstname("bruce");
         batman.setLastname("wayne");
@@ -64,7 +81,7 @@ public class InitServices {
         elfLucien.setCapacity(1200);
         elfLucien.setActualState(500);
         elfLucien.setEmployee(superman);
-       elfLucien.setGasTank(parisTank);
+        elfLucien.setGasTank(parisTank);
 
     }
 
@@ -72,11 +89,17 @@ public class InitServices {
     @Path("/database")
     @Produces(MediaType.TEXT_HTML)
     public String doInitialization(){
+
         boolean batmanOk = employeeDao.create(batman);
         boolean supermanOk = employeeDao.create(superman);
         boolean parisTankOk = gasTankDao.create(parisTank);
         boolean totalLucienOk = gasPumpDao.create(totalLucien);
         boolean elfLucienOk = gasPumpDao.create(elfLucien);
+        boolean jackOk = customerDao.create(jack);
+        boolean jackAccountOk = customerAccountDao.create(jackAccount);
+        boolean loisOk = customerDao.create(lois);
+        boolean loisAccountOk = customerAccountDao.create(loisAccount);
+
         if (batmanOk && supermanOk && parisTankOk && totalLucienOk && elfLucienOk)
             return "<p>Database's initialization is OK if the name above corresponds to <b>Batman</b></p><p>name: <b>"
                     + gasPumpDao.read(1).getEmployee().getFirstname()
