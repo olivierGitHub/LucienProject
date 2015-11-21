@@ -1,13 +1,13 @@
 package com.services;
 
-import com.dao.dao.CustomerAccountDaoImpl;
-import com.dao.dao.GasPumpDaoImpl;
-import com.dao.dao.GasTankDaoImpl;
-import com.dao.dao.PurchasingHistoryDaoImpl;
-import com.dao.dao.interfaces.CustomerAccountDao;
-import com.dao.dao.interfaces.GasPumpDao;
-import com.dao.dao.interfaces.GasTankDao;
-import com.dao.dao.interfaces.PurchasingHistoryDao;
+import com.dao.dao.customer.CustomerAccountDaoImpl;
+import com.dao.dao.gas.GasPumpDaoImpl;
+import com.dao.dao.gas.GasTankDaoImpl;
+import com.dao.dao.gas.PurchasingHistoryDaoImpl;
+import com.dao.dao.interfaces.customer.CustomerAccountDao;
+import com.dao.dao.interfaces.gas.GasPumpDao;
+import com.dao.dao.interfaces.gas.GasTankDao;
+import com.dao.dao.interfaces.gas.PurchasingHistoryDao;
 import com.dao.entities.*;
 
 import javax.ws.rs.GET;
@@ -15,7 +15,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
-import java.util.Date;
 
 /**
  * Created by olivier on 20/11/15.

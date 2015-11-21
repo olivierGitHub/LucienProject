@@ -1,7 +1,7 @@
 package com.services;
 
-import com.dao.dao.EmployeeDaoImpl;
-import com.dao.dao.interfaces.EmployeeDao;
+import com.dao.dao.employee.EmployeeDaoImpl;
+import com.dao.dao.interfaces.employee.EmployeeDao;
 import com.dao.entities.Employee;
 
 import javax.ws.rs.*;

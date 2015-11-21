@@ -1,7 +1,7 @@
-package com.dao.dao;
+package com.dao.dao.gas;
 
 import com.dao.common.AbstractDao;
-import com.dao.dao.interfaces.PurchasingHistoryDao;
+import com.dao.dao.interfaces.gas.PurchasingHistoryDao;
 import com.dao.entities.PurchasingHistory;
 
 /**

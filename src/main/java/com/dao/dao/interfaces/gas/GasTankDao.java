@@ -1,4 +1,4 @@
-package com.dao.dao.interfaces;
+package com.dao.dao.interfaces.gas;
 
 import com.dao.common.Dao;
 import com.dao.entities.GasTank;

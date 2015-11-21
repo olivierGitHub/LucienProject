@@ -1,7 +1,7 @@
-package com.dao.dao;
+package com.dao.dao.gas;
 
 import com.dao.common.AbstractDao;
-import com.dao.dao.interfaces.GasPumpDao;
+import com.dao.dao.interfaces.gas.GasPumpDao;
 import com.dao.entities.GasPump;
 
 /**

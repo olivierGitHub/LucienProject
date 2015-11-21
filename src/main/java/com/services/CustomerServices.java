@@ -1,9 +1,9 @@
 package com.services;
 
-import com.dao.dao.CustomerAccountDaoImpl;
-import com.dao.dao.CustomerDaoImpl;
-import com.dao.dao.interfaces.CustomerAccountDao;
-import com.dao.dao.interfaces.CustomerDao;
+import com.dao.dao.customer.CustomerAccountDaoImpl;
+import com.dao.dao.customer.CustomerDaoImpl;
+import com.dao.dao.interfaces.customer.CustomerAccountDao;
+import com.dao.dao.interfaces.customer.CustomerDao;
 import com.dao.entities.Customer;
 import com.dao.entities.CustomerAccount;
 

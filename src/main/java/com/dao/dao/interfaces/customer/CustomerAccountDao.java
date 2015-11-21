@@ -1,4 +1,4 @@
-package com.dao.dao.interfaces;
+package com.dao.dao.interfaces.customer;
 
 import com.dao.common.Dao;
 import com.dao.entities.CustomerAccount;

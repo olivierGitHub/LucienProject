@@ -1,7 +1,15 @@
 package com.services;
 
-import com.dao.dao.*;
-import com.dao.dao.interfaces.*;
+import com.dao.dao.customer.CustomerAccountDaoImpl;
+import com.dao.dao.customer.CustomerDaoImpl;
+import com.dao.dao.employee.EmployeeDaoImpl;
+import com.dao.dao.gas.GasPumpDaoImpl;
+import com.dao.dao.gas.GasTankDaoImpl;
+import com.dao.dao.interfaces.customer.CustomerAccountDao;
+import com.dao.dao.interfaces.customer.CustomerDao;
+import com.dao.dao.interfaces.employee.EmployeeDao;
+import com.dao.dao.interfaces.gas.GasPumpDao;
+import com.dao.dao.interfaces.gas.GasTankDao;
 import com.dao.entities.*;
 
 import javax.ws.rs.*;

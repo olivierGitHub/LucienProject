@@ -1,7 +1,7 @@
 package com.test;
 
-import com.dao.dao.EmployeeDaoImpl;
-import com.dao.dao.interfaces.EmployeeDao;
+import com.dao.dao.employee.EmployeeDaoImpl;
+import com.dao.dao.interfaces.employee.EmployeeDao;
 import com.dao.entities.Employee;
 
 /**

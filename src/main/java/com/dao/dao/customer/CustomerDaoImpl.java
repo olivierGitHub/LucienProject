@@ -1,7 +1,7 @@
-package com.dao.dao;
+package com.dao.dao.customer;
 
 import com.dao.common.AbstractDao;
-import com.dao.dao.interfaces.CustomerDao;
+import com.dao.dao.interfaces.customer.CustomerDao;
 import com.dao.entities.Customer;
 
 /**
