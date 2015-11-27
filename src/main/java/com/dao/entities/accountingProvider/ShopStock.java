@@ -1,12 +1,11 @@
 package com.dao.entities.accountingProvider;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 /**
  * Created by olivier on 21/11/15.
  */
+@Entity
 public class ShopStock {
 
     @Id
@@ -15,7 +14,8 @@ public class ShopStock {
     private String article;
     private Double unitPrice;
     private Integer quantity;
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.ALL})
+    @PrimaryKeyJoinColumn
     private Provider provider;
 
     public Integer getIdShopStock() {return idShopStock;}

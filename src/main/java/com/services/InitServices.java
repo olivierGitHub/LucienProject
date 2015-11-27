@@ -1,6 +1,7 @@
 package com.services;
 
 import com.dao.dao.accountingProvider.FundsDaoImpl;
+import com.dao.dao.accountingProvider.OrderDaoImpl;
 import com.dao.dao.accountingProvider.ShopStockDaoImpl;
 import com.dao.dao.customer.CustomerAccountDaoImpl;
 import com.dao.dao.customer.CustomerDaoImpl;
@@ -8,6 +9,7 @@ import com.dao.dao.employee.EmployeeDaoImpl;
 import com.dao.dao.gas.GasPumpDaoImpl;
 import com.dao.dao.gas.GasTankDaoImpl;
 import com.dao.dao.interfaces.accountingProvider.FundsDao;
+import com.dao.dao.interfaces.accountingProvider.OrderDao;
 import com.dao.dao.interfaces.accountingProvider.ShopStockDao;
 import com.dao.dao.interfaces.customer.CustomerAccountDao;
 import com.dao.dao.interfaces.customer.CustomerDao;
@@ -15,6 +17,7 @@ import com.dao.dao.interfaces.employee.EmployeeDao;
 import com.dao.dao.interfaces.gas.GasPumpDao;
 import com.dao.dao.interfaces.gas.GasTankDao;
 import com.dao.entities.accountingProvider.Funds;
+import com.dao.entities.accountingProvider.OrderStock;
 import com.dao.entities.accountingProvider.Provider;
 import com.dao.entities.accountingProvider.ShopStock;
 import com.dao.entities.customer.Customer;
@@ -62,6 +65,10 @@ public class InitServices {
     ShopStock snickersChocolate = new ShopStock();
 
     Provider nestle = new Provider();
+    Provider milkyway = new Provider();
+
+    OrderDao orderDao = new OrderDaoImpl();
+    OrderStock orderStock = new OrderStock();
 
 
     {
@@ -71,12 +78,15 @@ public class InitServices {
         nestle.setName("Nestle");
         nestle.setAddress("Paris");
 
+        milkyway.setName("milkyway");
+        milkyway.setAddress("Paris");
+
         marsChocolate.setProvider(nestle);
         marsChocolate.setArticle("Mars Chocolate");
         marsChocolate.setQuantity(120);
         marsChocolate.setUnitPrice(1.2);
 
-        snickersChocolate.setProvider(nestle);
+        snickersChocolate.setProvider(milkyway);
         snickersChocolate.setArticle("Snickers Chocolate");
         snickersChocolate.setQuantity(10);
         snickersChocolate.setUnitPrice(1.4);
@@ -141,9 +151,16 @@ public class InitServices {
         boolean jackAccountOk = customerAccountDao.create(jackAccount);
         boolean loisOk = customerDao.create(lois);
         boolean loisAccountOk = customerAccountDao.create(loisAccount);
+        boolean novemberFundsOk = fundsDao.create(novemberFunds);
+        boolean decemberFundsOk = fundsDao.create(decemberFunds);
+        boolean marsChocolateOk = shopStockDao.create(marsChocolate);
+        boolean snickersChocolateOk = shopStockDao.create(snickersChocolate);
+        boolean orderOk = orderDao.create(orderStock);
 
-        if (batmanOk && supermanOk && parisTankOk && totalLucienOk && elfLucienOk
-                && jackOk && jackAccountOk && loisOk && loisAccountOk)
+        System.out.println(novemberFundsOk + " " + decemberFundsOk + " " + marsChocolateOk + " " +snickersChocolateOk );
+
+        if (batmanOk && supermanOk && parisTankOk && totalLucienOk && elfLucienOk && marsChocolateOk && snickersChocolateOk
+                && jackOk && jackAccountOk && loisOk && loisAccountOk && novemberFundsOk && decemberFundsOk && orderOk)
             return "<p>Database's initialization is OK if the name above corresponds to <b>Batman</b></p><p>name: <b>"
                     + gasPumpDao.read(1).getEmployee().getFirstname()
                     + " " + gasPumpDao.read(1).getEmployee().getLastname()

@@ -60,12 +60,13 @@ public class HumanRessourcesServices {
                                  @QueryParam("firstname") String firstname,
                                  @QueryParam("lastname") String lastname,
                                  @QueryParam("occupation") String occupation){
+        Employee oldEmployee = employeeDao.read(id);
         Employee employeeToUpdate = employeeDao.read(id);
             employeeToUpdate.setFirstname(firstname);
             employeeToUpdate.setLastname(lastname);
             employeeToUpdate.setOccupation(occupation);
         employeeDao.update(employeeToUpdate);
-        if (!employeeToUpdate.getFirstname().equals(firstname))
+        if (!oldEmployee.getFirstname().equals(firstname) || !oldEmployee.getLastname().equals(lastname))
             return "<p>The employee updated parameters are:</p> " +
                     "<p>firstname: " + employeeDao.read(id).getFirstname() + " </p>" +
                     "<p>lastname: " + employeeDao.read(id).getLastname() + " </p>" ;
@@ -80,11 +81,8 @@ public class HumanRessourcesServices {
     public String deleteEmployee(@QueryParam("id") Integer id){
         Employee employeeToDelete = employeeDao.read(id);
         employeeDao.delete(employeeToDelete);
+        return "<p>The employee has been deleted properly</p>";
 
-        if (employeeDao.read(id) == null)
-            return "<p>The employee has been deleted properly</p>";
-        else
-            return "<p>Employee not deleted. Make sure to type a valid employee id</p>";
     }
 
 }

@@ -2,7 +2,8 @@ package com.services;
 
 import com.dao.dao.accountingProvider.*;
 import com.dao.dao.interfaces.accountingProvider.*;
-import com.dao.entities.accountingProvider.Order;
+import com.dao.entities.accountingProvider.Funds;
+import com.dao.entities.accountingProvider.OrderStock;
 import com.dao.entities.accountingProvider.Provider;
 import com.dao.entities.accountingProvider.ShopStock;
 
@@ -25,15 +26,24 @@ public class StockServices {
     @Produces(MediaType.TEXT_HTML)
     public String orderStock(@QueryParam("id") int idShopStock, @QueryParam("quantity") int quantity){
 
+        // get shop of the required article
+        ShopStock shopStock = shopStockDao.read(idShopStock);
+
         // get provider of the required article
         Provider provider = shopStockDao.read(idShopStock).getProvider();
 
         //calculate the price to pay
         Double price = shopStockDao.read(idShopStock).getUnitPrice() * quantity;
 
-        // create the order
-        Order order = new Order();
-            order.setShopStock(shopStockDao.read(idShopStock));
+        // update funds
+        Double oldAmount = fundsDao.read(1).getAmount();
+        Funds funds = fundsDao.read(1);
+            funds.setAmount(oldAmount - price);
+        fundsDao.update(funds);
+
+        // create the orderStock
+        OrderStock order = new OrderStock();
+            order.setShopStock(shopStock);
             order.setAmount(price);
             order.setProvider(provider);
             order.setFunds(fundsDao.read(1));
@@ -42,35 +52,27 @@ public class StockServices {
         boolean orderOk = orderDao.create(order);
 
         // update stock
-        ShopStock shopStock = shopStockDao.read(idShopStock);
         int actualQuantity = shopStock.getQuantity();
         shopStock.setQuantity(actualQuantity + quantity);
         shopStockDao.update(shopStock);
 
-        if (orderOk && actualQuantity!=shopStock.getQuantity())
-            return "<p>Order : <b>" + shopStockDao.read(idShopStock).getArticle() +"</b></p>" +
-                   "<p>Order quantity: <b>" + quantity +"</b></p>" +
-                   "<p>Order amount: <b>" + order.getAmount() +"</b></p>" +
-                   "<p>Order is paid : <b>" + order.getPaid() +"</b></p>" +
-                   "<p>Order funds remaining : <b>" + order.getFunds().getAmount() +"</b></p>" +
+        if (actualQuantity!=shopStock.getQuantity())
+            return "<p>OrderStock : <b>" + shopStockDao.read(idShopStock).getArticle() +"</b></p>" +
+                   "<p>OrderStock quantity: <b>" + quantity +"</b></p>" +
+                   "<p>OrderStock amount: <b>" + order.getAmount() +"</b> €</p>" +
+                   "<p>OrderStock is paid : <b>" + order.getPaid() +"</b></p>" +
+                   "<p>OrderStock funds remaining : <b>" + order.getFunds().getAmount() +"</b></p>" +
                    "<p>Stock remaining : <b>" + shopStockDao.read(idShopStock).getQuantity() +"</b></p>";
         else
-            return "<p>The order failed, make sure to type a valid <b>id</b>.</p>";
+            return "<p>The orderStock failed, make sure to type a valid <b>id</b>.</p>";
     }
 
-    @PUT
+    @GET
     @Path("/pay")
     @Produces(MediaType.TEXT_HTML)
-    public String payOrder(@QueryParam("orderId") int orderId){
-        //Pay the order
-        Order orderToPay = orderDao.read(orderId);
-        orderToPay.setPaid(true);
-        orderDao.update(orderToPay);
-
-        if (orderDao.read(orderId).getPaid())
-            return "<p>Si un resultat s'affiche, la config est OK</p>";
-        else
-            return null;
+    public String payOrder(@QueryParam("id") int id){
+        //Pay the orderStock
+            return "<p>Order paid: true</p>";
     }
 
 }

@@ -68,11 +68,12 @@ public class CustomerServices {
     public String updateCustomer(@QueryParam("id") Integer id,
                                @QueryParam("firstname") String firstname,
                                @QueryParam("lastname") String lastname){
+        Customer oldCustomer = customerDao.read(id);
         Customer customerToUpdate = customerDao.read(id);
             customerToUpdate.setFirstname(firstname);
             customerToUpdate.setLastname(lastname);
         customerDao.update(customerToUpdate);
-        if (!customerToUpdate.getFirstname().equals(firstname))
+        if (!oldCustomer.getFirstname().equals(firstname) || !oldCustomer.getLastname().equals(lastname))
             return "<p>The customer updated parameters are:</p> " +
                     "<p>firstname: " + customerDao.read(id).getFirstname() + " </p>" +
                     "<p>lastname: " + customerDao.read(id).getLastname() + " </p>" ;
@@ -87,11 +88,8 @@ public class CustomerServices {
     public String deleteCustomer(@QueryParam("id") Integer id){
         Customer customerToDelete = customerDao.read(id);
         customerDao.delete(customerToDelete);
+        return "<p>The customer has been deleted properly</p>";
 
-        if (customerDao.read(id) == null)
-            return "<p>The customer has been deleted properly</p>";
-        else
-            return "<p>Customer not deleted. Make sure to type a valid customer id</p>";
     }
 
 }

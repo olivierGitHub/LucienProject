@@ -6,7 +6,8 @@ import java.util.Date;
 /**
  * Created by olivier on 21/11/15.
  */
-public class Order {
+@Entity
+public class OrderStock {
 
     @Id
     @GeneratedValue
@@ -14,11 +15,14 @@ public class Order {
     private Double amount;
     private Date PurchasingDate;
     private Boolean paid;
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.ALL})
+    @PrimaryKeyJoinColumn
     private Funds funds;
-    @ManyToMany
+    @OneToOne(cascade = {CascadeType.ALL})
+    @PrimaryKeyJoinColumn
     private Provider provider;
-    @OneToMany
+    @OneToOne(cascade = {CascadeType.ALL})
+    @PrimaryKeyJoinColumn
     private ShopStock shopStock;
 
 
